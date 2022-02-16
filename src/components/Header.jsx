@@ -17,12 +17,16 @@ import ListItem from '@material-ui/core/ListItem';
 const navigationLinks = [
   { name: 'About', href: '#about' },
   { name: 'Projects', href: '#projects' },
-  { name: 'Resume', href: '' },
+  { name: 'Blog', href: '/blog'},
+  { name: 'Resume', href: '/David Rajec Resume.pdf' },
 ];
 
 const useStyles = makeStyles((theme) => ({
   link: {
     marginRight: 20,
+    '&:hover': {
+      color: '#d17505'
+    }
   },
   avatar: {
     marginRight: 'auto',
@@ -31,8 +35,17 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 0,
     height: 30,
     border: '2px solid gray',
+    width: 80,
     borderLeft: '12px solid transparent',
     borderRight: '12px solid transparent',
+  },
+  homeButton: {
+    color: 'white',
+    textDecoration: 'none',
+    cursor: 'pointer',
+    '&:hover': {
+      color: '#d17505'
+    }
   }
 }));
 
@@ -43,7 +56,7 @@ const Header = () => {
     <AppBar position='sticky' color='default'>
       <Container maxWidth='md'>
         <ToolBar disableGutters>
-          <Avatar className={styles.avatar}>D</Avatar>
+          <Avatar className={styles.avatar}><a className={styles.homeButton} href='/'>{"<D />"}</a></Avatar>
           <Hidden xsDown>
             {navigationLinks.map((item) => (
               <Link

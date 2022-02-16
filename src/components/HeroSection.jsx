@@ -51,7 +51,7 @@ const HeroSection = () => {
     <Paper className={styles.section} id='about'>
       <StaticImage
         className={styles.heroImage}
-        src='https://images.unsplash.com/photo-1519895710315-a04b64f04a36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
+        src='https://upload.wikimedia.org/wikipedia/commons/0/05/Moon_Monster2.jpg'
       />
       <div className={styles.overlay} />
       <Container maxWidth='md' className={styles.container}>

@@ -22,6 +22,6 @@ const IndexPage = () => {
       <Projects />
     </ThemeProvider>
   );
-}
+};
 
 export default IndexPage
