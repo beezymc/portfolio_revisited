@@ -13,12 +13,12 @@ import Divider from '@material-ui/core/Divider';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import Button from '@material-ui/core/Button';
 
 const navigationLinks = [
   { name: 'About', href: '#about' },
   { name: 'Projects', href: '#projects' },
   { name: 'Blog', href: '/blog'},
-  { name: 'Resume', href: '/David Rajec Resume.pdf' },
 ];
 
 const useStyles = makeStyles((theme) => ({
@@ -46,6 +46,9 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       color: '#d17505'
     }
+  },
+  resumeButton: {
+    marginRight: 20
   }
 }));
 
@@ -56,37 +59,41 @@ const Header = () => {
     <AppBar position='sticky' color='default'>
       <Container maxWidth='md'>
         <ToolBar disableGutters>
-          <Avatar className={styles.avatar}><a className={styles.homeButton} href='/'>{"<D />"}</a></Avatar>
+          <Avatar className={styles.avatar}><a className={styles.homeButton} href='#home'>{"<D />"}</a></Avatar>
           <Hidden xsDown>
-            {navigationLinks.map((item) => (
+            {navigationLinks.map((item, index) => (
               <Link
                 className={styles.link}
                 color='textPrimary'
                 variant='button'
                 underline='none'
                 href={item.href}
+                key={index}
               >
                 {item.name}
               </Link>
             ))}
+            <Button className={styles.resumeButton} href='/David Rajec Resume.pdf' variant='outlined' color='secondary'>
+              Resume
+            </Button>
           </Hidden>
           <Hidden smUp>
-              <IconButton>
-                <MenuIcon onClick={() => setOpen(true)} />
+              <IconButton onClick={() => setOpen(true)}>
+                <MenuIcon />
               </IconButton>
           </Hidden>
         </ToolBar>
       </Container>
       <SwipeableDrawer anchor='right' open={open} onOpen={() => setOpen(true)} onClose={() => setOpen(false)}>
         <div>
-          <IconButton>
-            <ChevronRightIcon onClick={() => setOpen(false)}/>
+          <IconButton onClick={() => setOpen(false)}>
+            <ChevronRightIcon />
           </IconButton>
         </div>
         <Divider />
         <List>
-          {navigationLinks.map((item) => (
-            <ListItem>
+          {navigationLinks.map((item, index) => (
+            <ListItem key={index}>
               <Link
                 className={styles.link}
                 color='textPrimary'
@@ -98,6 +105,11 @@ const Header = () => {
               </Link>
             </ListItem>
           ))}
+          <ListItem>
+            <Button href='/David Rajec Resume.pdf' variant='outlined' color='secondary'>
+              Resume
+            </Button>
+          </ListItem>
         </List>
       </SwipeableDrawer>
     </AppBar>

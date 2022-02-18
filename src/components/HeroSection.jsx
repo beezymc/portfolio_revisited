@@ -13,7 +13,7 @@ import { StaticImage } from 'gatsby-plugin-image';
 
 const useStyles = makeStyles((theme) => ({
   section: {
-    height: '90vh',
+    height: '92vh',
     position: 'relative'
   },
   content: {
@@ -48,10 +48,11 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <Paper className={styles.section} id='about'>
+    <Paper className={styles.section} id='home'>
       <StaticImage
         className={styles.heroImage}
-        src='https://upload.wikimedia.org/wikipedia/commons/0/05/Moon_Monster2.jpg'
+        src='../images/Moon_Monster2.jpeg'
+        alt='San Diego Skyline'
       />
       <div className={styles.overlay} />
       <Container maxWidth='md' className={styles.container}>
@@ -66,7 +67,7 @@ const HeroSection = () => {
                 Hi, my name is David! I'm a software engineer.
               </Typography>
               <Typography variant='h5'>
-                I build websites, web applications, and responsive components
+                I build websites, web applications, and responsive components with the goal of creating a fantastic user experience.
               </Typography>
               <Box my={2}>
                 <Button href='mailto:david.rajec@gmail.com' variant='outlined' color='secondary'>

@@ -13,6 +13,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Chip from '@material-ui/core/Chip';
 import Hidden from '@material-ui/core/Hidden';
+import catwalk from '../images/Catwalk.png';
+import portfolio from '../images/Portfolio.png';
+import ratingsReviews from '../images/Ratings_Reviews.png';
+import sayWhen from '../images/SayWhen.png';
 
 const useStyles = makeStyles((theme) => ({
   cardMedia: {
@@ -20,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     display: 'flex',
+    boxShadow: '2px 2px 2px rgba(209, 117, 5, 0.5)'
   },
   links: {
     marginRight: 'auto',
@@ -28,6 +33,9 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 5,
     marginBottom: 5,
   },
+  title: {
+    borderBottom: '2px solid rgba(209, 117, 5, 0.5)',
+  }
 }))
 
 const TagsContainer = ({ tags }) => {
@@ -38,7 +46,7 @@ const TagsContainer = ({ tags }) => {
         <Chip
           className={styles.tag}
           label={tag}
-          variant='outline'
+          variant='outlined'
           key={tag}
         />
       ))}
@@ -49,12 +57,12 @@ const TagsContainer = ({ tags }) => {
 const Project = ({ title, description, imageUrl, tags, links }) => {
   const styles = useStyles();
   return (
-    <Grid item>
+    <Grid item className={styles.gridItem}>
       <Card className={styles.card}>
         <div>
           <CardContent>
-            <Typography variant='h5' paragraph>
-              {title}
+            <Typography variant='h5' paragraph >
+              <span className={styles.title}>{title}</span>
             </Typography>
             <Typography variant='subtitle1' paragraph>
               {description}
@@ -65,8 +73,8 @@ const Project = ({ title, description, imageUrl, tags, links }) => {
           </CardContent>
           <CardActions>
             <div className={styles.links}>
-              {links.map((linkItem) => (
-                <IconButton href={linkItem.href} key={linkItem.href}>
+              {links.map((linkItem, index) => (
+                <IconButton href={linkItem.href} key={index} target="_blank">
                   <linkItem.icon />
                 </IconButton>
               ))}
@@ -77,7 +85,9 @@ const Project = ({ title, description, imageUrl, tags, links }) => {
           </CardActions>
         </div>
         <Hidden xsDown>
-          <CardMedia className={styles.cardMedia} image={imageUrl}></CardMedia>
+          <CardMedia component='img' className={styles.cardMedia} image={imageUrl}>
+
+          </CardMedia>
         </Hidden>
       </Card>
     </Grid>
@@ -85,18 +95,17 @@ const Project = ({ title, description, imageUrl, tags, links }) => {
 }
 
 const Projects = () => {
+  const styles = useStyles();
   return (
-    <Container maxWidth='md' id='projects'>
+    <Container maxWidth='md' id='projects' className={styles.projectsContainer}>
       <Box pt={8} mb={2}>
         <Typography variant='h4'>Projects</Typography>
       </Box>
-
       <Grid container direction='column' spacing={4}>
-        {projectsData.map((data) => (
-          <Project {...data} />
+        {projectsData.map((data, index) => (
+          <Project {...data} key={index}/>
         ))}
       </Grid>
-
     </Container>
   );
 };
@@ -105,56 +114,62 @@ export default Projects;
 
 const projectsData = [
   {
-    title: "Lorem ipsum dolor sit amet, consectetur adipiscing ",
+    title: "This Portfolio",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
-    imageUrl:
-      "https://images.unsplash.com/photo-1557008075-7f2c5efa4cfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=697&q=80",
-    tags: ["React.js", "Material-UI", "Gatsby.js"],
+      "This is the portfolio you're on! Features of this portfolio include: header, hero section, about me, projects, footer, blog, and blog posts (using markdown files). The portfolio is fully responsive, using material-ui's Hidden component to tactfully show/hide/transform certain features at different screen sizes.",
+    imageUrl: portfolio,
+    tags: ["React", "Material UI", "Gatsby.js", "AWS S3"],
     links: [
       {
         icon: GithubIcon,
-        href: "https://www.github.com",
-      },
+        href: "https://github.com/beezymc/portfolio_revisited",
+      }
+    ],
+  },
+  {
+    title: "Ratings and Reviews",
+    description:
+      "This project involved scaling a backend API endpoint for a shopping web application. This required a few steps: ETL of previously-stored data into a new Postgres database, developing a REDIS store, creating a server with efficient queries to that database/REDIS store, deploying the server (with REDIS cache, using docker and docker-compose) and database to AWS EC2, scaling the server to multiple EC2 instances, and introducing a new EC2 instance with an nginx load balancer. See the github readme for additional details.",
+    imageUrl: ratingsReviews,
+    tags: ["Node", "Express", "PostgreSQL", "Nginx", "REDIS", "Docker", "NewRelic", "AWS EC2/Cloudwatch"],
+    links: [
       {
-        icon: OpenInNewIcon,
-        href: "https://www.google.com",
+        icon: GithubIcon,
+        href: "https://github.com/beezymc/Ratings-and-Reviews",
       },
     ],
   },
   {
-    title: "Lorem ipsum dolor sit amet",
+    title: "Catwalk",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
-    imageUrl:
-      "https://images.unsplash.com/photo-1433086966358-54859d0ed716?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80",
-    tags: ["GraphQL", "Apollo Client", "Prisma", "Material-UI"],
+      "In this project, two engineers and I built the product view page of a shopping web application. Features I implemented include: client-side routing using React-Router, maintaining global state with Redux, the creation of a related items carousel component, the development of an outfits carousel component, and deployment via AWS EC2 and Docker.",
+    imageUrl: catwalk,
+    tags: ["Node", "Express", "React", "React-Router", "Redux", "CSS3", "HTML5", "Docker", "AWS EC2"],
     links: [
       {
         icon: GithubIcon,
-        href: "https://www.github.com",
+        href: "https://github.com/beezymc/Catwalk",
       },
       {
         icon: OpenInNewIcon,
-        href: "https://www.google.com",
+        href: "http://54.210.174.187/product/63609/",
       },
     ],
   },
   {
-    title: "Lorem ipsum dolor ",
+    title: "SayWhen!",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
-    imageUrl:
-      "https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-    tags: ["React.js", "Node.js", "PostgreSQL", "Next.js"],
+      "This is a 2-day project in which I created an app that allows a user to create a weekly availability calendar and share that calendar with others, who can then schedule activities using that availability as a reference. It makes use of unique ids to generate a unique availability page every time a calendar is created.",
+    imageUrl: sayWhen,
+    tags: ["Node", "PostgreSQL", "Prisma", "Next.js", "Material UI", "Vercel"],
     links: [
       {
         icon: GithubIcon,
-        href: "https://www.github.com",
+        href: "https://github.com/beezymc/SayWhen",
       },
       {
         icon: OpenInNewIcon,
-        href: "https://www.google.com",
+        href: "https://saywhen.vercel.app/",
       },
     ],
   },
