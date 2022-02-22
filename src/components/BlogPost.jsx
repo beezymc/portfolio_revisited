@@ -83,7 +83,7 @@ const BlogPost = ({ data }) => {
             <img src={post.frontmatter.headerimage} className={styles.headerImage} alt='Blog Header'/>
           </div>
           <Typography paragraph>
-            <div className={styles.bodyText} dangerouslySetInnerHTML={{ __html: post.html }} />
+            <span className={styles.bodyText} dangerouslySetInnerHTML={{ __html: post.html }} />
           </Typography>
         </Box>
         <div className={styles.blogButton}>

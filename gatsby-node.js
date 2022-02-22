@@ -1,5 +1,7 @@
 const { createFilePath } = require(`gatsby-source-filesystem`);
 const path = require(`path`);
+var s3 = require('s3');
+var fs = require('fs');
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions;

@@ -54,7 +54,7 @@ const Header = () => {
           <Hidden xsDown>
             <Box className={styles.titleBox}>
               <Typography component='h1' variant='h4'>
-                David's Deliberations
+                David Rajec's Blog
               </Typography>
             </Box>
           </Hidden>
