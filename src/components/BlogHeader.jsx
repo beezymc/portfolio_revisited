@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 import AppBar from '@material-ui/core/AppBar';
 import ToolBar from '@material-ui/core/ToolBar';
 import Container from '@material-ui/core/Container';
@@ -7,7 +7,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import Hidden from '@material-ui/core/hidden';
 
 const useStyles = makeStyles((theme) => ({
   link: {
@@ -51,13 +50,11 @@ const Header = () => {
       <Container maxWidth='md'>
         <ToolBar disableGutters>
           <Avatar className={styles.avatar}><a className={styles.homeButton} href='/'>{"<D />"}</a></Avatar>
-          <Hidden xsDown>
-            <Box className={styles.titleBox}>
-              <Typography component='h1' variant='h4'>
-                David Rajec's Blog
-              </Typography>
-            </Box>
-          </Hidden>
+          <Box className={styles.titleBox} sx={{ display: { xs: 'none', md: 'block'}}}>
+            <Typography component='h1' variant='h4'>
+              David Rajec's Blog
+            </Typography>
+          </Box>
           <Button className={styles.resumeButton} href='mailto:david.rajec@gmail.com' variant='outlined' color='secondary'>
             Get in Touch!
           </Button>

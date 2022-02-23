@@ -5,15 +5,14 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 import Social from './Social.jsx';
-import Hidden from '@material-ui/core/hidden';
 import Zoom from '@material-ui/core/Zoom';
 import { StaticImage } from 'gatsby-plugin-image';
 
 const useStyles = makeStyles((theme) => ({
   section: {
-    height: '92vh',
+    height: '94vh',
     position: 'relative'
   },
   content: {
@@ -76,11 +75,9 @@ const HeroSection = () => {
               </Box>
             </Grid>
           </Zoom>
-          <Hidden xsDown>
-            <Grid item>
-              <Social direction={'column'}/>
-            </Grid>
-          </Hidden>
+          <Grid item sx={{ display: { xs: 'none', md: 'block' }}}>
+            <Social direction={'column'}/>
+          </Grid>
         </Grid>
       </Container>
     </Paper>

@@ -1,6 +1,6 @@
 import React from 'react';
-import GithubIcon from '@material-ui/icons/Github';
-import OpenInNewIcon from '@material-ui/icons/OpenInNew';
+import GithubIcon from '@mui/icons-material/Github';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -9,7 +9,7 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Chip from '@material-ui/core/Chip';
 import Hidden from '@material-ui/core/Hidden';
@@ -35,6 +35,11 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     borderBottom: '2px solid rgba(209, 117, 5, 0.5)',
+  },
+  projectsContainer: {
+    backgroundColor: 'gray',
+    color: 'white',
+    width: '100vw',
   }
 }))
 
@@ -57,7 +62,7 @@ const TagsContainer = ({ tags }) => {
 const Project = ({ title, description, imageUrl, tags, links }) => {
   const styles = useStyles();
   return (
-    <Grid item className={styles.gridItem}>
+    <Grid item>
       <Card className={styles.card}>
         <div>
           <CardContent>
@@ -97,16 +102,18 @@ const Project = ({ title, description, imageUrl, tags, links }) => {
 const Projects = () => {
   const styles = useStyles();
   return (
-    <Container maxWidth='md' id='projects' className={styles.projectsContainer}>
-      <Box pt={8} mb={2}>
-        <Typography variant='h4'>Projects</Typography>
-      </Box>
-      <Grid container direction='column' spacing={4}>
-        {projectsData.map((data, index) => (
-          <Project {...data} key={index}/>
-        ))}
-      </Grid>
-    </Container>
+    <div className={styles.projectsContainer}>
+      <Container maxWidth='md' id='projects' >
+        <Box pt={8} mb={2}>
+          <Typography variant='h4'>Projects</Typography>
+        </Box>
+        <Grid container direction='column' spacing={4}>
+          {projectsData.map((data, index) => (
+            <Project {...data} key={index}/>
+          ))}
+        </Grid>
+      </Container>
+    </div>
   );
 };
 

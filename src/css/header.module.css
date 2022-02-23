@@ -1,0 +1,29 @@
+.link {
+  margin-right: 20;
+}
+.link:hover {
+  color: #d17505;
+}
+.avatar {
+  margin-right: auto;
+  color: white;
+  background-color: black;
+  border-radius: 0;
+  height: 30;
+  border: 2px solid gray;
+  width: 80;
+  border-left: 12px solid transparent;
+  border-radius: 12px solid transparent;
+}
+
+.homeButton {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+.homeButton:hover {
+  color: #d17505;
+}
+.resumeButton {
+  margin-right: 20
+}

@@ -1,22 +1,9 @@
 import React from 'react';
-import { graphql } from 'gatsby';
-import { createTheme, ThemeProvider, responsiveFontSizes } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import BlogHeader from '../components/BlogHeader.jsx';
 import Container from '@material-ui/core/Container';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import BlogFooter from '../components/BlogFooter';
 import Button from '@material-ui/core/Button';
-
-let darkTheme = createTheme({
-  palette: {
-    type: 'dark',
-  },
-});
-
-darkTheme = responsiveFontSizes(darkTheme);
 
 const useStyles = makeStyles((theme) => ({
   blogContainer: {
@@ -25,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: '1%',
     borderRadius: '5px',
     backgroundColor: '#212121',
+    color: 'white',
   },
   cardContent: {
     color: 'white',
@@ -61,16 +49,21 @@ const useStyles = makeStyles((theme) => ({
   },
   bodyText: {
     lineHeight: '2em'
+  },
+  blogBackground: {
+    backgroundColor: 'gray',
+    height: '100%',
+    width: '100vw',
+    zIndex: '-1',
+    paddingTop: '2%',
   }
 }));
 
 const BlogPost = ({ data }) => {
-  const post = data.markdownRemark
+  const post = data.markdownRemark;
   const styles = useStyles();
   return (
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
-      <BlogHeader />
+    <div className={styles.blogBackground}>
       <Container maxWidth='md' id='blog' className={styles.blogContainer}>
         <Box>
           <Typography variant='h5' className={styles.title}>
@@ -91,24 +84,9 @@ const BlogPost = ({ data }) => {
             View More Posts
           </Button>
         </div>
-
       </Container>
-      <BlogFooter />
-    </ThemeProvider>
+    </div>
   );
 };
 
 export default BlogPost;
-
-export const query = graphql`
-  query BlogQuery($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
-      frontmatter {
-        title
-        date(fromNow: true)
-        headerimage
-      }
-    }
-  }
-`

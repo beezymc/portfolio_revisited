@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
-import Link from '@material-ui/core/Link';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import ToolBar from '@material-ui/core/ToolBar';
-import Container from '@material-ui/core/Container';
-import Avatar from '@material-ui/core/Avatar';
-import Hidden from '@material-ui/core/Hidden';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import Divider from '@material-ui/core/Divider';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import Button from '@material-ui/core/Button';
+import Link from '@mui/material/Link';
+import { makeStyles } from '@mui/styles';
+import AppBar from '@mui/material/AppBar';
+import ToolBar from '@mui/material/ToolBar';
+import Container from '@mui/material/Container';
+import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import Divider from '@mui/material/Divider';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import Button from '@mui/material/Button';
 
 const navigationLinks = [
   { name: 'About', href: '#about' },
@@ -56,13 +55,14 @@ const Header = () => {
   const styles = useStyles();
   const [open, setOpen] = useState(false);
   return (
-    <AppBar position='sticky' color='default'>
+    <AppBar enableColorOnDark position='sticky' color='default'>
       <Container maxWidth='md'>
         <ToolBar disableGutters>
           <Avatar className={styles.avatar}><a className={styles.homeButton} href='#home'>{"<D />"}</a></Avatar>
-          <Hidden xsDown>
+          <Container sx={{ display: { xs: 'none', md: 'block' }}}>
             {navigationLinks.map((item, index) => (
               <Link
+                sx={{ display: { xs: 'none', md: 'block' }}}
                 className={styles.link}
                 color='textPrimary'
                 variant='button'
@@ -73,15 +73,14 @@ const Header = () => {
                 {item.name}
               </Link>
             ))}
-            <Button className={styles.resumeButton} href='/David Rajec Resume.pdf' variant='outlined' color='secondary'>
+            <Button sx={{ display: { xs: 'none', md: 'block' }}} className={styles.resumeButton} href='/David Rajec Resume.pdf' variant='outlined' color='secondary'>
               Resume
             </Button>
-          </Hidden>
-          <Hidden smUp>
-              <IconButton onClick={() => setOpen(true)}>
-                <MenuIcon />
-              </IconButton>
-          </Hidden>
+          </Container>
+
+          <IconButton onClick={() => setOpen(true)} sx={{ display: { xs: 'block', md: 'none' }}}>
+            <MenuIcon sx={{ display: { xs: 'block', md: 'none'}}}/>
+          </IconButton>
         </ToolBar>
       </Container>
       <SwipeableDrawer anchor='right' open={open} onOpen={() => setOpen(true)} onClose={() => setOpen(false)}>

@@ -1,11 +1,10 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 import Container from "@material-ui/core/Container";
 import { StaticImage } from "gatsby-plugin-image";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import Hidden from "@material-ui/core/Hidden";
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -38,7 +37,11 @@ const useStyles = makeStyles(() => ({
   },
   header: {
     borderBottom: '2px solid rgba(209, 117, 5, 0.5)',
-    marginBottom: '2%'
+    marginBottom: '2%',
+    color: 'white',
+  },
+  text: {
+    color: 'white',
   }
 }));
 
@@ -62,28 +65,26 @@ export default function About() {
             alignItems="center"
             spacing={1}
           >
-            <Grid item className={styles.text} sm={8}>
+            <Grid item sm={8}>
               <div className={styles.header}>
                 <Typography component="h2" variant="h4" gutterBottom>
                   About Me
                 </Typography>
               </div>
               {content.map((text) => (
-                <Typography variant="subtitle1" key={text} paragraph>
+                <Typography variant="subtitle1" key={text} className={styles.text} paragraph>
                   {text}
                 </Typography>
               ))}
             </Grid>
-            <Hidden xsDown>
-              <Grid item className={styles.photoContainer} sm={3}>
-                <StaticImage
-                  src='../images/david_rl.jpg'
-                  alt='David Rajec profile image'
-                  className={styles.photo}
-                />
-                <div className={styles.border}></div>
-              </Grid>
-            </Hidden>
+            <Grid item className={styles.photoContainer} sx={{ display: { xs: 'none', md: 'block'}}} sm={3}>
+              <StaticImage
+                src='../images/david_rl.jpg'
+                alt='David Rajec profile image'
+                className={styles.photo}
+              />
+              <Box className={styles.border}></Box>
+            </Grid>
           </Grid>
         </Box>
       </Container>

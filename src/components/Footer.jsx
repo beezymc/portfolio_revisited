@@ -1,9 +1,8 @@
 import React from "react";
-import Hidden from "@material-ui/core/Hidden";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import Social from "./Social.jsx";
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme) => ({
   footer: {
@@ -12,24 +11,29 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     marginLeft: 'auto',
     marginRight: 'auto',
+    color: 'white',
   },
   social: {
-    paddingLeft: '14px'
+    paddingLeft: '25px'
+  },
+  footerBox: {
+    backgroundColor: 'gray',
   }
 }));
 
 export default function Footer() {
   const styles = useStyles();
   return (
-    <Container maxWidth="md" component="footer" className={styles.footer}>
-      <Box mt={8} mb={2} >
-        <Hidden mdUp>
+    <div className={styles.footerBox}>
+       <Container maxWidth="md" component="footer" className={styles.footer}>
+        <Box mt={8} mb={2} >
           <div className={styles.social}>
             <Social direction="row" />
           </div>
-        </Hidden>
-        <span>Copyright © 2022 David Rajec</span>
-      </Box>
-    </Container>
+          <span>Copyright © 2022 David Rajec</span>
+        </Box>
+      </Container>
+    </div>
+
   );
 }

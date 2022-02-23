@@ -4,7 +4,7 @@ module.exports = {
     siteUrl: `https://www.davidrajec.com`,
     description: 'David Rajec\'s Portfolio'
   },
-  plugins: ["gatsby-plugin-image", "gatsby-plugin-sharp", "gatsby-transformer-sharp",
+  plugins: ["gatsby-plugin-image", "gatsby-plugin-material-ui", "gatsby-theme-material-ui", "gatsby-plugin-sharp", "gatsby-transformer-sharp",
   {
     resolve: "gatsby-transformer-remark",
     options: {
